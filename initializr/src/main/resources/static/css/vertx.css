@@ -10,12 +10,45 @@ body, h1, h2, h3 {
     font-family: "Varela Round", sans-serif;
 }
 
+a {
+    color: #782b90;
+}
+
+a:hover,
+a:focus {
+    color: #782b90;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-image: -webkit-linear-gradient(top, #6f5499 0%, #782b90 100%);
+    background-image:      -o-linear-gradient(top, #6f5499 0%, #782b90 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#6f5499), to(#782b90));
+    background-image:         linear-gradient(to bottom, #6f5499 0%, #782b90 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6f5499', endColorstr='#782b90', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    background-color: #782b90;
+    border-color: #563d7c;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: #782b90 0 -15px;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #782b90;
+    border-color: #563d7c;
+}
+
 .start-header {
     color: #eee;
     background-color: #34302d;
     font-size: 25px;
     padding: 0.5em 0;
-    border-top: 4px solid #6db33f;
+    border-top: 4px solid #782b90;
 }
 
 .start-header h1 {
@@ -51,7 +84,7 @@ input[type=text] {
 }
 
 .tag {
-    background-color: #6db33f;
+    background-color: #782b90;
     color: #fff;
     font-weight: 700;
     border-radius: .25em;

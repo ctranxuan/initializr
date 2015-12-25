@@ -16,6 +16,8 @@
 
 package io.spring.initializr.web
 
+import groovy.util.logging.Slf4j
+
 import javax.annotation.PostConstruct
 
 import io.spring.initializr.metadata.InitializrMetadataProvider

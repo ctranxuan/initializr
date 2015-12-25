@@ -16,6 +16,8 @@
 
 package io.spring.initializr.config
 
+import groovy.util.logging.Slf4j
+
 import java.util.concurrent.TimeUnit
 
 import com.google.common.cache.CacheBuilder

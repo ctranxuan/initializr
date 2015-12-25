@@ -1,10 +1,10 @@
 info:
   project:
-    name: Spring Start
-    version: 0.4.0
+    name: Vert.x Start
+    version: 0.1.0
   # remember to update static/install.sh as well:
   spring-boot:
-    version: 1.3.0.RELEASE
+    version: 3.2.0
 
 server:
   compression:
@@ -13,545 +13,201 @@ server:
     min-response-size: 2048
 
 initializr:
+  description:
+    value: Demo project for Vert.x
   env:
-    boms:
-      vaadin-bom:
-        groupId: com.vaadin
-        artifactId: vaadin-bom
-        version: 7.5.5
-      cloud-bom:
-        groupId: org.springframework.cloud
-        artifactId: spring-cloud-starter-parent
-        mappings:
-          - versionRange: "[1.2.3.RELEASE,1.3.0.M1)"
-            version: Angel.SR4
-          - versionRange: "[1.3.0.M2,1.3.1.RELEASE]"
-            version: Brixton.M4
-            repositories: spring-snapshots,spring-milestones
-          - versionRange: 1.3.2.BUILD-SNAPSHOT
-            version: Brixton.BUILD-SNAPSHOT
-            repositories: spring-snapshots,spring-milestones
+    spring-boot-metadata-url:
   dependencies:
     - name: Core
       content:
-        - name: Security
-          id: security
-          description: Secure your application via spring-security
-          weight: 100
-        - name: AOP
-          id: aop
-          description: Aspect-oriented programming including spring-aop and AspectJ
-        - name: Atomikos (JTA)
-          id: jta-atomikos
-          description: JTA distributed transactions via Atomikos
-          versionRange: 1.2.0.M1
-        - name: Bitronix (JTA)
-          id: jta-bitronix
-          description: JTA distributed transactions via Bitronix
-          versionRange: 1.2.0.M1
-        - name: Cache
-          id: cache
-          description: Spring's Cache abstraction
-          versionRange: 1.3.0.M1
-        - name: DevTools
-          id: devtools
-          groupId: org.springframework.boot
-          artifactId: spring-boot-devtools
-          description: Spring Boot Development Tools
-          versionRange: 1.3.0.M1
-          starter: false
-        - name: Validation
-          id: validation
-          description: JSR-303 validation infrastructure (already included with web)
-          versionRange: 1.3.0.M1
-        - name: Session
-          id: session
-          groupId: org.springframework.session
-          artifactId: spring-session
-          description: API and implementations for managing a user’s session information
-          versionRange: 1.3.0.M2
-          starter: false
-        - name: Retry
-          id: retry
-          groupId: org.springframework.retry
-          artifactId: spring-retry
-          description: Provide declarative retry support via spring-retry
-          versionRange: 1.3.0.M2
-          starter: false
-        - name: Lombok
-          id: lombok
-          groupId: org.projectlombok
-          artifactId: lombok
-          version: 1.16.6
-          description: Java annotation library which help to reduce boilerplate code and code faster
-          scope: provided
+        - name: Vert.x Core
+          id: vertx-core
+          groupId: io.vertx
+          artifactId: vertx-core
+          description: Vert.x core contains fairly low level functionality including support for HTTP, TCP, file system access, and various other features.
           starter: false
     - name: Web
       content:
-        - name: Web
-          id: web
-          description: Full-stack web development with Tomcat and Spring MVC
-          weight: 100
-          facets:
-            - web
-        - name: Websocket
-          id: websocket
-          description: Websocket development with SockJS and STOMP
-        - name: WS
-          id: ws
-          description: Contract-first SOAP service development with Spring Web Services
-        - name: Jersey (JAX-RS)
-          id: jersey
-          description: the Jersey RESTful Web Services framework
-          versionRange: 1.2.0.RELEASE
-        - name: Ratpack
-          id: ratpack
-          description: Spring Boot integration for the Ratpack framework
-          groupId: io.ratpack
-          artifactId: ratpack-spring-boot
-          version: 1.1.1
-          versionRange: 1.2.0.RELEASE
+        - name: Vert.x Web
+          id: vertx-web
+          groupId: io.vertx
+          artifactId: vertx-web
+          description: Vert.x Web is a toolkit for writing sophisticated modern web applications and HTTP microservices.
           starter: false
-        - name: Vaadin
-          id: vaadin
-          facets:
-            - web
-          groupId: com.vaadin
-          artifactId: vaadin-spring-boot-starter
-          version: 1.0.0
-          description: Vaadin
-          bom: vaadin-bom
-        - name: Rest Repositories
-          id: data-rest
-          weight: 10
-          description: Exposing Spring Data repositories over REST via spring-data-rest-webmvc
-        - name: HATEOAS
-          id: hateoas
-          description: HATEOAS-based RESTful services
-          versionRange: 1.2.2.RELEASE
-        - name: Rest Repositories HAL Browser
-          id: data-rest-hal
-          description: Browsing Spring Data REST repositories with an HTML UI
-          groupId: org.springframework.data
-          artifactId: spring-data-rest-hal-browser
-          versionRange: 1.3.0.M1
+        - name: Vert.x Thymeleaf Web
+          id: vertx-web-templ-thymeleaf
+          groupId: io.vertx
+          artifactId: vertx-web-templ-thymeleaf
+          description: Vert.x Thymeleaf Web.
           starter: false
-        - name: Mobile
-          id: mobile
-          description: Simplify the development of mobile web applications with spring-mobile
-        - name: REST Docs
-          id: restdocs
-          description: Document RESTful services by combining hand-written and auto-generated documentation
-          groupId: org.springframework.restdocs
-          artifactId: spring-restdocs-mockmvc
-          versions:
-            - versionRange: "[1.2.0.RELEASE,1.3.0.RC1)"
-              version: 1.0.1.RELEASE
-          scope: test
-    - name: Template Engines
-      content:
-        - name: Freemarker
-          id: freemarker
-          description: FreeMarker templating engine
-          facets:
-            - web
-          keywords:
-            - template
-        - name: Velocity
-          id: velocity
-          description: Velocity templating engine
-          facets:
-            - web
-          keywords:
-            - template
-        - name: Groovy Templates
-          id: groovy-templates
-          description: Groovy templating engine
-          facets:
-            - web
-        - name: Thymeleaf
-          id: thymeleaf
-          description: Thymeleaf templating engine, including integration with Spring
-          facets:
-            - web
-          keywords:
-            - template
-        - name: Mustache
-          id: mustache
-          description: Mustache templating engine
-          versionRange: 1.2.2.RELEASE
-          facets:
-            - web
-          keywords:
-            - template
-    - name: Data
-      content:
-        - name: JDBC
-          id: jdbc
-          description: JDBC databases
-        - name: JPA
-          id: data-jpa
-          description: Java Persistence API including spring-data-jpa, spring-orm and Hibernate
-          weight: 100
-          aliases:
-            - jpa
-        - name: JOOQ
-          id: jooq
-          description: Persistence support using Java Object Oriented Querying
-          versionRange: 1.3.0.M2
-        - name: MongoDB
-          id: data-mongodb
-          description: MongoDB NoSQL Database, including spring-data-mongodb
-          weight: 50
-        - name: Cassandra
-          id: data-cassandra
-          description: Cassandra NoSQL Database, including spring-data-cassandra
-          versionRange: 1.3.0.RC1
-        - name: Redis
-          id: redis
-          description: REDIS key-value data store, including spring-redis
-        - name: Gemfire
-          id: data-gemfire
-          description: GemFire distributed data store including spring-data-gemfire
-        - name: Solr
-          id: data-solr
-          description: Apache Solr search platform, including spring-data-solr
-        - name: Elasticsearch
-          id: data-elasticsearch
-          description: Elasticsearch search and analytics engine including spring-data-elasticsearch
-          weight: 10
-    - name: Cloud Core
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Cloud Connectors
-          id: cloud-connectors
-          description: Simplifies connecting to services in cloud platforms, including spring-cloud-connector and spring-cloud-cloudfoundry-connector
-          versionRange: 1.2.0.RELEASE
-        - name: Cloud Bootstrap
-          id: cloud-starter
-          description: spring-cloud-context (e.g. Bootstrap context and @RefreshScope)
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter
-          weight: 100
-        - name: Cloud Security
-          id: cloud-security
-          description: Secure load balancing and routing with spring-cloud-security
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-security
-        - name: Cloud OAuth2
-          id: cloud-oauth2
-          description: OAuth2 and distributed application patterns with spring-cloud-security
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-oauth2
-    - name: Cloud Config
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Config Client
-          id: cloud-config-client
-          description: spring-cloud-config Client
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-config
-          weight: 100
-        - name: Config Server
-          id: cloud-config-server
-          description: Central management for configuration via a git or svn backend
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-config-server
-        - name: Zookeeper Configuration
-          id: cloud-starter-zookeeper-config
-          description: Configuration management with Zookeeper and spring-cloud-zookeeper-config
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-zookeeper-config
-        - name: Consul Configuration
-          id: cloud-starter-consul-config
-          description: Configuration management with Hashicorp Consul
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-consul-config
-    - name: Cloud Discovery
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Eureka Discovery
-          id: cloud-eureka
-          description: Service discovery using spring-cloud-netflix and Eureka
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-eureka
-          weight: 100
-        - name: Eureka Server
-          id: cloud-eureka-server
-          description: spring-cloud-netflix Eureka Server
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-eureka-server
-        - name: Zookeeper Discovery
-          id: cloud-starter-zookeeper-discovery
-          description: Service discovery with Zookeeper and spring-cloud-zookeeper-discovery
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-zookeeper-discovery
-        - name: Cloud Foundry Discovery
-          id: cloud-cloudfoundry-discovery
-          description: Service discovery with Cloud Foundry
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-cloudfoundry-discovery
-        - name: Consul Discovery
-          id: cloud-starter-consul-discovery
-          description: Service discovery with Hashicorp Consul
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-consul-discovery
-    - name: Cloud Routing
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Zuul
-          id: cloud-zuul
-          description: Intelligent and programmable routing with spring-cloud-netflix Zuul
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-zuul
-        - name: Ribbon
-          id: cloud-ribbon
-          description: Client side load balancing with spring-cloud-netflix and Ribbon
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-ribbon
-        - name: Feign
-          id: cloud-feign
-          description: Declarative REST clients with spring-cloud-netflix Feign
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-feign
-    - name: Cloud Circuit Breaker
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Hystrix
-          id: cloud-hystrix
-          description: Circuit breaker with spring-cloud-netflix Hystrix
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-hystrix
-        - name: Hystrix Dashboard
-          id: cloud-hystrix-dashboard
-          description: Circuit breaker dashboard with spring-cloud-netflix Hystrix
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-hystrix-dashboard
-        - name: Turbine
-          id: cloud-turbine
-          description: Circuit breaker metric aggregation using spring-cloud-netflix with Turbine and server-sent events
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-turbine
-        - name: Turbine AMQP
-          id: cloud-turbine-amqp
-          description: Circuit breaker metric aggregation using spring-cloud-netflix with Turbine and AMQP
-          versionRange: "[0.0.0.RELEASE,1.3.0.M5]"
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-turbine-amqp
-        - name: Turbine Stream
-          id: cloud-turbine-stream
-          description: Circuit breaker metric aggregation using spring-cloud-netflix with Turbine and Spring Cloud Stream (choose a specific Stream binder implementation to complement this)
-          versionRange: "(1.3.0.M5,999.9.9.RELEASE]"
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-turbine-stream
-          weight: -1
-    - name: Cloud Tracing
-      bom: cloud-bom
-      versionRange: "1.3.0.M4"
-      content:
-        - name: Sleuth
-          id: cloud-starter-sleuth
-          description: Distributed tracing via logs with spring-cloud-sleuth
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-sleuth
-        - name: Zipkin
-          id: cloud-starter-zipkin
-          description: Distributed tracing via Zipkin and spring-cloud-sleuth-zipkin
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-zipkin
-    - name: Cloud Messaging
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: Cloud Bus AMQP
-          id: cloud-bus-amqp
-          description: A simple control bus with AMQP and spring-cloud-bus-amqp
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-bus-amqp
-        - name: Cloud Bus Redis
-          id: cloud-bus-redis
-          description: A simple control bus with Redis and spring-cloud-bus
-          versionRange: "(1.3.0.M5,9999.9.9.RELEASE]"
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-bus-redis
-        - name: Cloud Bus Kafka
-          id: cloud-bus-kafka
-          description: A simple control bus with Kafka and spring-cloud-bus
-          versionRange: "(1.3.0.M5,9999.9.9.RELEASE]"
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-bus-kafka
-        - name: Consul Bus
-          id: cloud-starter-consul-bus
-          description: Inter instance control events with Hashicorp Consul
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-consul-bus
-        - name: Stream Rabbit
-          id: cloud-stream-binder-rabbit
-          description: Messaging microservices with RabbitMQ 
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-stream-rabbit
-        - name: Stream Redis
-          id: cloud-stream-binder-redis
-          description: Messaging microservices with Redis
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-stream-redis
-        - name: Stream Kafka
-          id: cloud-stream-binder-kafka
-          description: Messaging microservices with Kafka
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-stream-kafka
-    - name: Cloud AWS
-      bom: cloud-bom
-      versionRange: "1.2.3.RELEASE"
-      content:
-        - name: AWS Core
-          id: cloud-aws
-          description: AWS native services from spring-cloud-aws
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws
-        - name: AWS JDBC
-          id: cloud-aws-jdbc
-          description: Relational databases on AWS with RDS and spring-cloud-aws-jdbc
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws-jdbc
-        - name: AWS Messaging
-          id: cloud-aws-messaging
-          description: Messaging on AWS with SQS and spring-cloud-aws-messaging
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-starter-aws-messaging
-    - name: Cloud Cluster
-      bom: cloud-bom
-      versionRange: "1.3.0.M4"
-      content:
-        - name: Cluster Redis
-          id: cloud-cluster-redis
-          description: Leadership election and global state with Redis and spring-cloud-cluster-redis
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-cluster-redis
-        - name: Cluster Zookeeper
-          id: cloud-cluster-zookeeper
-          description: Leadership election and global state with Zookeeper and spring-cloud-cluster-zookeeper
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-cluster-zookeeper
-        - name: Cluster Hazelcast
-          id: cloud-cluster-hazelcast
-          description: Leadership election and global state with Hazelcast and spring-cloud-cluster-hazelcast
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.cloud
-          artifactId: spring-cloud-cluster-hazelcast
-    - name: Database
-      content:
-        - name: H2
-          id: h2
-          description: H2 database (with embedded support)
-          groupId: com.h2database
-          artifactId: h2
-          scope: runtime
+        - name: Vert.x Handlebars Web
+          id: vertx-web-templ-handlebars
+          groupId: io.vertx
+          artifactId: vertx-web-templ-handlebars
+          description: Vert.x Handlebars Web.
           starter: false
-        - name: HSQLDB
-          id: hsql
-          description: HSQLDB database (with embedded support)
-          groupId: org.hsqldb
-          artifactId: hsqldb
-          scope: runtime
+        - name: Vert.x Jade Web
+          id: vertx-web-templ-jade
+          groupId: io.vertx
+          artifactId: vertx-web-templ-jade
+          description: Vert.x Jade Web.
           starter: false
-        - name: Apache Derby
-          id: derby
-          description: Apache Derby database (with embedded support)
-          groupId: org.apache.derby
-          artifactId: derby
-          scope: runtime
-          versionRange: 1.2.2.RELEASE
+        - name: Vert.x Mvel Web
+          id: vertx-web-templ-mvel
+          groupId: io.vertx
+          artifactId: vertx-web-templ-mvel
+          description: Vert.x Mvel Web.
           starter: false
-        - name: MySQL
-          id: mysql
-          description: MySQL jdbc driver
-          groupId: mysql
-          artifactId: mysql-connector-java
-          scope: runtime
-          starter: false
-        - name: PostgreSQL
-          id: postgresql
-          description: PostgreSQL jdbc driver
-          groupId: org.postgresql
-          artifactId: postgresql
-          versions:
-            - versionRange: "[1.2.0.RELEASE,1.3.0.M1)"
-              version: 9.4-1201-jdbc41
-          scope: runtime
-          starter: false
-    - name: Social
+    - name: Reactive
       content:
-        - name: Facebook
-          id: social-facebook
-          description: spring-social-facebook
-          weight: 25
-        - name: LinkedIn
-          id: social-linkedin
-          description: spring-social-linkedin
-        - name: Twitter
-          id: social-twitter
-          description: spring-social-twitter
-    - name: I/O
+        - name: Vert.x Rx
+          id: vertx-rx-java
+          groupId: io.vertx
+          artifactId: vertx-rx-java
+          description: Vert.x provides Rx-ified (using RxJava) versions for most of its APIs so you can use those if you prefer.
+          starter: false
+        - name: Vert.x Reactive Streams
+          id: vertx-reactive-streams
+          groupId: io.vertx
+          artifactId: vertx-reactive-streams
+          description: Vert.x supports reactive streams so your applications can interoperate with other reactive systems such as Akka or Project Reactor.
+          starter: false
+        - name: Vert.x Sync
+          id: vertx-sync
+          groupId: io.vertx
+          artifactId: vertx-sync
+          description: Vert.x allows you to deploy verticles that run using fibers. Fibers are very lightweight threads that can be blocked without blocking a kernel thread. This enables you to write your verticle code in a familiar synchronous style.
+          starter: false
+    - name: Data Access
       content:
-        - name: Batch
-          id: batch
-          description: Spring Batch including HSQLDB database
-        - name: Integration
-          id: integration
-          description: Common spring-integration modules
-        - name: Activiti
-          id: activiti-basic
-          description: Activiti BPMN workflow engine
-          groupId: org.activiti
-          artifactId: activiti-spring-boot-starter-basic
-          version: 5.19.0
-        - name: JMS (Artemis)
-          id: artemis
-          description: Java Message Service API via Apache Artemis
-          versionRange: 1.3.0.M2
-        - name: JMS (HornetQ)
-          id: hornetq
-          description: Java Message Service API via HornetQ
-        - name: AMQP
-          id: amqp
-          description: Advanced Message Queuing Protocol via spring-rabbit
-        - name: Mail
-          id: mail
-          description: javax.mail
-          versionRange: 1.2.0.RC1
-    - name: Ops
+        - name: Vert.x Mongodb Client
+          id: vertx-mongo-client
+          groupId: io.vertx
+          artifactId: vertx-mongo-client
+          description: Vert.x Mongodb Client allows applications to interact with a MongoDB instance, whether that’s saving, retrieving, searching, or deleting documents.
+          starter: false
+        - name: Vert.x Mongodb Embedded Db
+          id: vertx-mongo-embedded-db
+          groupId: io.vertx
+          artifactId: vertx-mongo-embedded-db
+          description: Vert.x Mongodb Embedded Db.
+          starter: false
+        - name: Vert.x JDBC Client
+          id: vertx-jdbc-client
+          groupId: io.vertx
+          artifactId: vertx-jdbc-client
+          description: Vert.x JDBC Client allows you to interact with any JDBC compliant database using an asynchronous API from your Vert.x application.
+          starter: false
+        - name: Vert.x Common SQL
+          id: vertx-sql-common
+          groupId: io.vertx
+          artifactId: vertx-sql-common
+          description: Vert.x Common SQL is used to interact with Vert.x SQL services.
+          starter: false
+        - name: Vert.x Redis Client
+          id: vertx-redis-client
+          groupId: io.vertx
+          artifactId: vertx-redis-client
+          description: Vert.x Redis Client allows applications to interact with a Redis instance, whether that’s saving, retrieving, searching, or deleting documents.
+          starter: false
+    - name: Integration
       content:
-        - name: Actuator
-          id: actuator
-          description: Production ready features to help you monitor and manage your application
-        - name: Actuator Docs
-          id: actuator-docs
-          description: API documentation for the Actuator endpoints
-          versionRange: 1.3.0.M4
-          groupId: org.springframework.boot
-          artifactId: spring-boot-actuator-docs
-        - name: Remote Shell
-          id: remote-shell
-          description: CRaSH shell integration
+        - name: Vert.x Mail Client
+          id: vertx-mail-client
+          groupId: io.vertx
+          artifactId: vertx-mail-client
+          description: Vert.x Mail Client provides a simple SMTP mail client so you can send emails from your applications.
+          starter: false
+        - name: Vert.x Mail Service
+          id: vertx-mail-service
+          groupId: io.vertx
+          artifactId: vertx-mail-service
+          description: Vert.x Mail Service.
+          starter: false
+        - name: Vert.x Stomp
+          id: vertx-stomp
+          groupId: io.vertx
+          artifactId: vertx-stomp
+          description: Vert.x Stomp provides an implementation of the STOMP protocol.
+          starter: false
+        - name: Vert.x JCA Adaptor
+          id: vertx-jca
+          groupId: io.vertx
+          artifactId: vertx-jca
+          description: Vert.x provides a Java Connector Architecture (JCA) adaptor which allows it to interoperate with any JavaEE application server.
+          starter: false
+        - name: Vert.x TCP Eventbus Bridge
+          id: vertx-tcp-eventbus-bridge
+          groupId: io.vertx
+          artifactId: vertx-tcp-eventbus-bridge
+          description: An eventbus bridge that let you interact with vert.x from any application thanks to a TCP socket.
+          starter: false
+    - name: Authentication and Authorisation
+      content:
+        - name: Vert.x Common Auth APIs
+          id: vertx-auth-common
+          groupId: io.vertx
+          artifactId: vertx-auth-common
+          description: Vert.x Common Auth APIs provides interfaces for authentication and authorisation that can be used from your Vert.x applications and can be backed by different providers.
+          starter: false
+        - name: Vert.x JDBC Auth Provider implementation
+          id: vertx-auth-jdbc
+          groupId: io.vertx
+          artifactId: vertx-auth-jdbc
+          description: Vert.x JDBC Auth Provider provides an implementation of AuthProvider which uses the Vert.x JDBCClient to perform authentication and authorisation against any JDBC compliant database.
+          starter: false
+        - name: Vert.x JWT auth
+          id: vertx-auth-jwt
+          groupId: io.vertx
+          artifactId: vertx-auth-jwt
+          description: Vert.x JWT Auth contains an out of the box a JWT implementation.
+          starter: false
+        - name: Vert.x OAuth2
+          id: vertx-auth-oauth2
+          groupId: io.vertx
+          artifactId: vertx-auth-oauth2
+          description: Vert.x OAuth2 Auth contains an out of the box a OAuth2 implementation.
+          starter: false
+        - name: Vert.x Shiro
+          id: vertx-auth-shiro
+          groupId: io.vertx
+          artifactId: vertx-auth-shiro
+          description: Vert.x Shiro Provider contains an implementation that uses Apache Shiro.
+          starter: false
+        - name: Vert.x Mongo Auth
+          id: vertx-auth-mongo
+          groupId: io.vertx
+          artifactId: vertx-auth-mongo
+          description: Vert.x Mongo Auth Provider provides an implementation of AuthProvider which uses the Vert.x MongoDbClient to perform authentication and authorisation against MongoDb database.
+          starter: false
+    - name: Devops
+      content:
+        - name: Vert.x Dropwizard
+          id: vertx-dropwizard-metrics
+          groupId: io.vertx
+          artifactId: vertx-dropwizard-metrics
+          description: Vert.x Dropwizard captures metrics from Vert.x core components and exposes them using Dropwizard.
+          starter: false
+        - name: Vert.x Hawkular Metrics
+          id: vertx-hawkular-metrics
+          groupId: io.vertx
+          artifactId: vertx-hawkular-metrics
+          description: Vert.x Hawkular  is an implementation of the Vert.x Metrics Service Provider Interface (SPI) i.e. metrics built from Vert.x events will be sent to Hawkular, an open source monitoring and management solution.
+          starter: false
+        - name: Vert.x Shell
+          id: vertx-shell
+          groupId: io.vertx
+          artifactId: vertx-shell
+          description: Vert.x Shell lets you interact with your vert.x application using a CLI interface.
+          starter: false
+    - name: Clustering
+      content:
+        - name: Vert.x Hazelcast
+          id: vertx-hazelcast
+          groupId: io.vertx
+          artifactId: vertx-hazelcast
+          description: Vert.x Hazelcast is a cluster manager implementation for Vert.x that uses Hazelcast.
+          starter: false
   types:
     - name: Maven Project
       id: maven-project
@@ -593,16 +249,9 @@ initializr:
     - name: Jar
       id: jar
       default: true
-    - name: War
-      id: war
-      default: false
   javaVersions:
     - id: 1.8
       default: true
-    - id: 1.7
-      default: false
-    - id: 1.6
-      default: false
   languages:
     - name: Java
       id: java
@@ -611,13 +260,6 @@ initializr:
       id: groovy
       default: false
   bootVersions:
-    - name : Latest SNAPSHOT
-      id: 1.2.4.BUILD-SNAPSHOT
-      default: false
-    - name: 1.2.3
-      id: 1.2.3.RELEASE
+    - name : 3.2.0
+      id: 3.2.0
       default: true
-    - name: 1.1.12
-      id: 1.1.12.RELEASE
-      default: false
-

@@ -152,7 +152,9 @@ class ProjectRequest {
 	 * and the requested Spring Boot {@link Version}.
 	 */
 	protected void initializeRepositories(InitializrMetadata metadata, Version requestedVersion) {
-		if (!'RELEASE'.equals(requestedVersion.qualifier.qualifier)) {
+		if (
+			requestedVersion.qualifier &&
+			!'RELEASE'.equals(requestedVersion.qualifier.qualifier)) {
 			repositories['spring-snapshots'] = metadata.configuration.env.repositories['spring-snapshots']
 			repositories['spring-milestones'] = metadata.configuration.env.repositories['spring-milestones']
 		}
@@ -191,10 +193,11 @@ class ProjectRequest {
 	 * dependency
 	 */
 	protected addDefaultDependency() {
-		def root = new Dependency()
-		root.id = DEFAULT_STARTER
-		root.asSpringBootStarter('')
-		resolvedDependencies << root
+//		def root = new Dependency()
+//		root.id = DEFAULT_STARTER
+//		root.asSpringBootStarter('')
+//		resolvedDependencies << root
+		resolvedDependencies
 	}
 
 	/**
