@@ -121,7 +121,7 @@ class ProjectGenerator {
 			model.testAnnotations = ''
 			model.testImports = ''
 		}
-		write(new File(test, "${applicationName}Tests.${language}"), "ApplicationTests.$language", model)
+		write(new File(test, "${applicationName}Test.${language}"), "ApplicationTest.$language", model)
 
 		def resources = new File(dir, 'src/main/resources')
 		resources.mkdirs()

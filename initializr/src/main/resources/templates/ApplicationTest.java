@@ -17,7 +17,7 @@ ${testAnnotations}public class ${applicationName}Test {
 	@Before
 	public void setUp(TestContext context) {
 		vertx = Vertx.vertx();
-		vertx.deployVerticle(MyFirstVerticle.class.getName(),
+		vertx.deployVerticle(${applicationName}.class.getName(),
 		context.asyncAssertSuccess());
 	}
 
