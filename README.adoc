@@ -1,3 +1,31 @@
+= This is a fork to generate Vert.x apps
+
+This is a fork to generate link:http://vertx.io/[Vert.x] apps.
+
+Right now, it's more a hack than a full version:
+
+* only maven projects are supported
+* some unit tests have been disabled
+* there is probably lots of dead code that is specific to the generation of SpringBoot projects
+* the Web UI has been a bit tested. The curl, cli, etc. have not been tested at all (did I already mention it was more a « hack » than a full working project?).
+
+== How to run / compile
+
+* get SpringBoot CLI. You can use link:http://sdkman.io/[SdkMan] or link:http://jenv.io/[Jenv.io]. I've used Jenv.io.
+* in a terminal, run:
+
+----
+cd initializr
+mvn clean install
+cd ..
+cd initializr-service
+spring run app.groovy
+----
+
+* open a browser link:http://localhost:8080[]
+
+You should get a web interface to generate Vert.x maven apps…
+
 = Spring Initializr
 :wiki: https://github.com/spring-io/initializr/wiki
 :boot-doc: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle
